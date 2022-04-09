@@ -31,5 +31,13 @@ pipeline {
                 }
             }
         }
-    }
+        stage('step 5 Push docker image to dockerhub') {
+                    steps{
+                        script {
+                            docker.withRegistry( '', registryCredential ) {
+                            dockerImage.push()
+                            }
+                        }
+                    }
+                }
 }
