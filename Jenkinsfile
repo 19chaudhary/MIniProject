@@ -1,7 +1,5 @@
-/* The environment specifies the credentials required to push my image to dockerhub */
-
 pipeline {
-environment {
+    environment {
         registry = "19chaudhary/scientificcalculatordevopstools"
         registryCredential = 'docker-cred'
         dockerImage = ''
@@ -10,7 +8,7 @@ environment {
     stages {
         stage('step 1 Git') {
             steps {
-                 git url: 'https://github.com/19chaudhary/MIniProject.git', branch: 'master',
+                 git url: 'https://github.com/19chaudhary/MiniProject.git', branch: 'master',
                  credentialsId: 'git-cred'
             }
         }
@@ -19,16 +17,19 @@ environment {
                 sh "mvn -B -DskipTests clean package"
             }
         }
-        stage('step 3 Test'){
-            steps{
+
+        stage('step 3 Test') {
+            steps {
                 sh "mvn test"
             }
         }
-        stage('stage 4 Building docker image') {
-                    steps{
-                        script {
-                            dockerImage = docker.build registry + ":latest"
-                        }
-                    }
+
+        stage('step 4 Building docker image') {
+            steps{
+                script {
+                    dockerImage = docker.build registry + ":latest"
+                }
+            }
         }
+    }
 }
