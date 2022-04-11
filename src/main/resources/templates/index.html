@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scientific Calculator</title>
+    <script>
+        function operation(){
+            var first = document.getElementById("first").value;
+            var second = document.getElementById("second").value;
+            switch (document.getElementById("operation").value){
+                case "SquareRoot":
+                    fetch('http://localhost:9091/getsqrt', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                        },
+                        body: JSON.stringify({
+                            input1:first,
+
+                        })
+                    }).then(response => response.json())
+                        .then((data) => {
+
+                            document.getElementById("result").value = data;
+                        });
+                    break;
+                case "Power":
+                    fetch('http://localhost:9091/getpower', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                        },
+                        body: JSON.stringify({
+                            input1:first,
+                            input2:second,
+
+                        })
+                    }).then(response => response.json())
+                        .then((data) => {
+
+                            document.getElementById("result").value = data;
+                        });
+                    break;
+
+
+                case "Factorial":
+                    fetch('http://localhost:9091/getfact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                        },
+                        body: JSON.stringify({
+                            input1:first,
+
+                        })
+                    }).then(response => response.json())
+                        .then((data) => {
+
+                            document.getElementById("result").value = data;
+                        });
+                    break;
+                case "Log":
+                    fetch('http://localhost:9091/getlog', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                        },
+                        body: JSON.stringify({
+                            input1:first,
+                        })
+                    }).then(response => response.json())
+                        .then((data) => {
+
+                            document.getElementById("result").value = data;
+                        });
+                    break;
+            }
+        }
+    </script>
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<h1> Scientific Calculator</h1>
+<div align="center">
+First Value : <input type="number" id="first"><br>
+Second Value : <input type="number" id="second"><br>
+
+Operation :
+<select name="operation" id="operation">
+
+    <option value="SquareRoot">Square Root</option>
+    <option value="Factorial">Factorial</option>
+    <option value="Log">Log</option>
+    <option value="Power">Power</option>
+</select>
+<br>
+<Button onclick="operation()"> Submit</Button>
+<br>
+Result : <input type="text" id="result" readonly>
+</div>
+</body>
+</html>
