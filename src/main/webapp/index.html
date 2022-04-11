@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+<body>
+<script src="JS/script.js"></script>
+
+<h1 align="center"> Scientific Calculator</h1>
+<div align="center">
+First Value : <input type="number" id="first"><br>
+Second Value : <input type="number" id="second"><br>
+
+Operation :
+<select name="operation" id="operation">
+
+    <option value="SquareRoot">Square Root</option>
+    <option value="Factorial">Factorial</option>
+    <option value="Log">Log</option>
+    <option value="Power">Power</option>
+</select>
+<br>
+<Button onclick="operation()"> Submit</Button>
+<br>
+Result : <input type="text" id="result" readonly>
+</div>
+</body>
+</html>
